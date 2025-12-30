@@ -188,9 +188,7 @@ class YOLO(object):
             score           = top_conf[i]
 
             top, left, bottom, right = box
-            #---------------------------------------------------------#
-            #  坐标取整并限制在图片范围内
-            # --------------------------------------------------------#
+
             top     = max(0, np.floor(top).astype('int32'))
             left    = max(0, np.floor(left).astype('int32'))
             bottom  = min(image.size[1], np.floor(bottom).astype('int32'))
@@ -228,8 +226,7 @@ class YOLO(object):
 
             draw.rectangle([left, top, right, bottom], outline=self.colors[c], width=thickness)
             draw.rectangle([tuple(text_origin), tuple(text_origin + label_size)], fill=self.colors[c])
-            draw.text(text_origin, str(label,'UTF-8'), fill=(0, 0, 0), font=font)
-            
+            draw.text(text_origin, str(label,'UTF-8'), fill=(0, 0, 0), font=font)            
             del draw
 
         return image
@@ -432,4 +429,5 @@ class YOLO(object):
 
         f.close()
         return 
+
 
